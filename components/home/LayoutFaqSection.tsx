@@ -22,15 +22,20 @@ export const LayoutFaqSection = () => {
       </div>
 
       <Accordion type="single" collapsible className="AccordionRoot">
-        {faq.items.map(({ question, answer }, idx) => (
-          <AccordionItem key={idx} value={`item-${idx + 1}`}>
-            <AccordionTrigger className="text-left">
-              {question}
-            </AccordionTrigger>
+        {faq.items.map(
+          (
+            item: { question: string; answer: string },
+            idx: number
+          ) => (
+            <AccordionItem key={idx} value={`item-${idx + 1}`}>
+              <AccordionTrigger className="text-left">
+                {item.question}
+              </AccordionTrigger>
 
-            <AccordionContent>{answer}</AccordionContent>
-          </AccordionItem>
-        ))}
+              <AccordionContent>{item.answer}</AccordionContent>
+            </AccordionItem>
+          )
+        )}
       </Accordion>
     </section>
   );
