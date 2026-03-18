@@ -190,7 +190,7 @@ export const LayoutContactSection = () => {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            {contact.formSubjects.map((subject) => (
+                            {contact.formSubjects.map((subject: string) => (
                               <SelectItem key={subject} value={subject}>
                                 {subject}
                               </SelectItem>
