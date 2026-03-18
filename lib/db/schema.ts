@@ -113,3 +113,107 @@ export const featureItems = pgTable("feature_items", {
     .notNull()
     .defaultNow(),
 });
+
+// CRM: Contacts
+export const contacts = pgTable("contacts", {
+  id: text("id").notNull().default(sql`gen_random_uuid()`).primaryKey(),
+  teamId: text("team_id")
+    .notNull()
+    .references(() => teams.id, { onDelete: "cascade" }),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  company: text("company"),
+  title: text("title"),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+// CRM: Deals (Opportunities)
+export const deals = pgTable("deals", {
+  id: text("id").notNull().default(sql`gen_random_uuid()`).primaryKey(),
+  teamId: text("team_id")
+    .notNull()
+    .references(() => teams.id, { onDelete: "cascade" }),
+  contactId: text("contact_id")
+    .notNull()
+    .references(() => contacts.id, { onDelete: "cascade" }),
+  title: text("title").notNull(),
+  status: text("status").notNull(),
+  value: text("value"),
+  stage: text("stage").notNull(),
+  note: text("note"),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+// CRM: Tasks (Reminders)
+export const tasks = pgTable("tasks", {
+  id: text("id").notNull().default(sql`gen_random_uuid()`).primaryKey(),
+  teamId: text("team_id")
+    .notNull()
+    .references(() => teams.id, { onDelete: "cascade" }),
+  assignedToUserId: text("assigned_to_user_id")
+    .references(() => users.id, { onDelete: "set null" }),
+  contactId: text("contact_id")
+    .references(() => contacts.id, { onDelete: "set null" }),
+  dealId: text("deal_id")
+    .references(() => deals.id, { onDelete: "set null" }),
+  title: text("title").notNull(),
+  description: text("description"),
+  dueDate: timestamp("due_date", { withTimezone: true }),
+  status: text("status").notNull().default("pending"),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+// CRM: Notes (for contacts or deals)
+export const notes = pgTable("notes", {
+  id: text("id").notNull().default(sql`gen_random_uuid()`).primaryKey(),
+  teamId: text("team_id")
+    .notNull()
+    .references(() => teams.id, { onDelete: "cascade" }),
+  authorId: text("author_id")
+    .references(() => users.id, { onDelete: "set null" }),
+  contactId: text("contact_id")
+    .references(() => contacts.id, { onDelete: "set null" }),
+  dealId: text("deal_id")
+    .references(() => deals.id, { onDelete: "set null" }),
+  body: text("body").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+// CRM: Activity logs (timeline/changes)
+export const activity = pgTable("activity", {
+  id: text("id").notNull().default(sql`gen_random_uuid()`).primaryKey(),
+  teamId: text("team_id")
+    .notNull()
+    .references(() => teams.id, { onDelete: "cascade" }),
+  userId: text("user_id")
+    .references(() => users.id, { onDelete: "set null" }),
+  entityType: text("entity_type").notNull(), // contact, deal, task, note, etc.
+  entityId: text("entity_id").notNull(),
+  action: text("action").notNull(), // created, updated, deleted, commented, etc.
+  details: text("details"),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
