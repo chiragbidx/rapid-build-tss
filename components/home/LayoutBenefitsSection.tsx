@@ -4,6 +4,12 @@ import { getHomeContent } from "@/content/home";
 
 const { benefits } = getHomeContent();
 
+type BenefitItem = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
 export const LayoutBenefitsSection = () => {
   return (
     <section id="benefits" className="container py-24 sm:py-32">
@@ -20,7 +26,7 @@ export const LayoutBenefitsSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-4 w-full">
-          {benefits.items.map(({ icon, title, description }, index) => (
+          {(benefits.items as BenefitItem[]).map(({ icon, title, description }, index) => (
             <Card
               key={title}
               className="bg-muted/50 dark:bg-card hover:bg-background transition-all delay-75 group/number"
