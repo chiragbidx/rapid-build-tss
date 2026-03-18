@@ -13,8 +13,6 @@ const forgotPasswordSchema = z.object({
   email: z.string().trim().email("Please enter a valid email address."),
 });
 
-// Always returns a generic success message regardless of whether the email
-// exists in the database, to prevent user enumeration.
 export async function forgotPasswordAction(
   _prevState: AuthActionState,
   formData: FormData
@@ -49,17 +47,18 @@ export async function forgotPasswordAction(
 
     await sendEmail(
       email,
-      "Reset your password",
+      "Reset your FlowCRM password",
       `
       <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
-        <h2>Password Reset</h2>
-        <p>We received a request to reset your password. Click the button below to choose a new one.</p>
+        <h2>Password Reset — FlowCRM</h2>
+        <p>We received a request to reset your FlowCRM password. Click the button below to choose a new one.</p>
         <p>
-          <a href="${resetUrl}" style="display: inline-block; padding: 10px 20px; background: #171717; color: #fff; text-decoration: none; border-radius: 6px;">
+          <a href="${resetUrl}" style="display: inline-block; padding: 10px 20px; background: #6715C2; color: #fff; text-decoration: none; border-radius: 6px;">
             Reset Password
           </a>
         </p>
         <p style="color: #666; font-size: 14px;">This link expires in 1 hour. If you didn't request this, you can safely ignore this email.</p>
+        <p style="color: #666; font-size: 13px;">Questions? Contact Chirag Dodiya — chirag@bidx.ai</p>
       </div>
       `
     );
