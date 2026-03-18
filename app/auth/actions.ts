@@ -11,11 +11,6 @@ import { db } from "@/lib/db/client";
 import { teams, teamMembers, users } from "@/lib/db/schema";
 import { sendEmail } from "@/lib/email/sendgrid";
 
-// Replication pattern for server actions in this codebase:
-// 1) Validate FormData with Zod.
-// 2) Return serializable error state for recoverable issues.
-// 3) Run DB/auth side effects only after validation passes.
-// 4) Redirect on successful terminal paths.
 export type AuthActionState = {
   status: "idle" | "success" | "error";
   message: string;
@@ -41,7 +36,6 @@ const signUpSchema = z
   });
 
 function getSafeRedirect(formData: FormData): string {
-  // Prevent open-redirects by allowing only internal paths.
   const raw = formData.get("redirectTo");
   if (typeof raw === "string" && raw.startsWith("/")) return raw;
   return "/dashboard";
@@ -51,7 +45,6 @@ export async function signInWithPassword(
   _prevState: AuthActionState,
   formData: FormData
 ): Promise<AuthActionState> {
-  // Step 1: validate request payload.
   const parsed = signInSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
@@ -65,7 +58,6 @@ export async function signInWithPassword(
   }
 
   const email = parsed.data.email.toLowerCase();
-  // Step 2: look up user and verify credentials.
   const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1);
   if (!user) {
     return { status: "error", message: "Invalid email or password." };
@@ -76,7 +68,6 @@ export async function signInWithPassword(
     return { status: "error", message: "Invalid email or password." };
   }
 
-  // Step 3: create session + redirect (success path does not return state).
   await createAuthSession(user.id, user.email);
   redirect(getSafeRedirect(formData));
 }
@@ -85,7 +76,6 @@ export async function signUpWithPassword(
   _prevState: AuthActionState,
   formData: FormData
 ): Promise<AuthActionState> {
-  // Step 1: validate request payload.
   const parsed = signUpSchema.safeParse({
     firstName: formData.get("firstName"),
     lastName: formData.get("lastName"),
@@ -102,7 +92,6 @@ export async function signUpWithPassword(
   }
 
   const email = parsed.data.email.toLowerCase();
-  // Step 2: enforce unique email.
   const [existingUser] = await db
     .select({ id: users.id })
     .from(users)
@@ -116,7 +105,6 @@ export async function signUpWithPassword(
     };
   }
 
-  // Step 3: create user record.
   const passwordHash = await bcrypt.hash(parsed.data.password, 12);
 
   const [newUser] = await db.insert(users).values({
@@ -129,7 +117,6 @@ export async function signUpWithPassword(
   const redirectTo = getSafeRedirect(formData);
   const isInviteFlow = redirectTo.startsWith("/invite/");
 
-  // Step 4: non-invite signup auto-creates a personal team + owner membership.
   if (!isInviteFlow) {
     const teamName = `${parsed.data.firstName}'s Team`;
     const [newTeam] = await db.insert(teams).values({ name: teamName }).returning({ id: teams.id });
@@ -140,7 +127,6 @@ export async function signUpWithPassword(
     });
   }
 
-  // Step 5: send verification email.
   const baseUrl = process.env.BASE_URL ?? "http://localhost:3000";
   const verifyToken = await generateAuthToken(newUser.id, "email_verification");
   const verifyUrl = `${baseUrl}/auth/verify-email/${verifyToken}`;
@@ -148,22 +134,21 @@ export async function signUpWithPassword(
 
   await sendEmail(
     email,
-    "Verify your email address",
+    "Verify your email address for FlowCRM",
     `
     <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
-      <h2>Welcome!</h2>
-      <p>Please verify your email address to complete your account setup.</p>
+      <h2>Welcome to FlowCRM!</h2>
+      <p>Please verify your email to activate your FlowCRM account and start building your CRM workspace.</p>
       <p>
-        <a href="${verifyUrl}" style="display: inline-block; padding: 10px 20px; background: #171717; color: #fff; text-decoration: none; border-radius: 6px;">
+        <a href="${verifyUrl}" style="display: inline-block; padding: 10px 20px; background: #6715C2; color: #fff; text-decoration: none; border-radius: 6px;">
           Verify Email
         </a>
       </p>
-      <p style="color: #666; font-size: 14px;">This link expires in 24 hours.</p>
+      <p style="color: #666; font-size: 14px;">This link expires in 24 hours.<br>If you have any questions, contact Chirag Dodiya at chirag@bidx.ai</p>
     </div>
     `
   );
 
-  // Step 6: auto-login and redirect.
   await createAuthSession(newUser.id, email);
   redirect(getSafeRedirect(formData));
 }
@@ -197,17 +182,17 @@ export async function resendVerificationEmailAction(
 
   const result = await sendEmail(
     user.email,
-    "Verify your email address",
+    "Verify your email address for FlowCRM",
     `
     <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
-      <h2>Verify your email</h2>
-      <p>Click the button below to verify your email address.</p>
+      <h2>Verify your FlowCRM email</h2>
+      <p>Click the button below to verify your FlowCRM account email address.</p>
       <p>
-        <a href="${verifyUrl}" style="display: inline-block; padding: 10px 20px; background: #171717; color: #fff; text-decoration: none; border-radius: 6px;">
+        <a href="${verifyUrl}" style="display: inline-block; padding: 10px 20px; background: #6715C2; color: #fff; text-decoration: none; border-radius: 6px;">
           Verify Email
         </a>
       </p>
-      <p style="color: #666; font-size: 14px;">This link expires in 24 hours.</p>
+      <p style="color: #666; font-size: 14px;">This link expires in 24 hours.<br>If you have questions, contact Chirag Dodiya at chirag@bidx.ai.</p>
     </div>
     `
   );
