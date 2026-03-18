@@ -5,11 +5,11 @@
   "type": "module",
   "packageManager": "pnpm@10.26.2",
   "scripts": {
-    "dev": "next dev --turbo",
-    "build": "next build",
+    "dev": "node init && next dev --turbo",
+    "build": "node init && next build",
     "analyze": "ANALYZE=true next build --webpack",
-    "start": "next start",
-    "start:supervised": "node scripts/dev-supervisor.js",
+    "start": "node init && next start",
+    "start:supervised": "node init && node scripts/dev-supervisor.js",
     "lint": "eslint",
     "db:generate": "drizzle-kit generate --config drizzle.config.ts",
     "db:migrate": "drizzle-kit migrate --config drizzle.config.ts"

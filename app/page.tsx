@@ -12,6 +12,7 @@ import { LayoutTeamSection } from "../components/home/LayoutTeamSection";
 import { LayoutTestimonialSection } from "../components/home/LayoutTestimonialSection";
 import { Navbar as LayoutNavbar } from "@/components/layout/navbar";
 import { getAuthSession } from "@/lib/auth/session";
+import Head from "next/head";
 
 export default async function Home() {
   const session = await getAuthSession();
@@ -47,6 +48,21 @@ export default async function Home() {
 
   return (
     <div className="home-dark min-h-screen bg-gradient-to-b from-zinc-50 via-white to-[#ffe6d8] text-zinc-900 transition-colors dark:from-[#120d0b] dark:via-[#16100d] dark:to-[#1f1612] dark:text-[#f7efe8]">
+      <Head>
+        <title>FlowCRM – Production-Ready Internal CRM Tool</title>
+        <meta name="description" content="FlowCRM is a modern starter CRM platform for internal business teams. Built by Chirag Dodiya. Email: chirag@bidx.ai" />
+        <meta name="author" content="Chirag Dodiya" />
+        <meta property="og:title" content="FlowCRM – Production-Ready Internal CRM Tool" />
+        <meta property="og:description" content="Start your internal CRM instantly with Next.js, Drizzle ORM, team auth, stunning UI. Built and maintained by Chirag Dodiya (chirag@bidx.ai)." />
+        <meta property="og:site_name" content="FlowCRM" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={process.env.BASE_URL || "https://flowcrm.com"} />
+        <meta property="og:image" content="/hero-image-light.jpeg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FlowCRM – Production-Ready Internal CRM Tool" />
+        <meta name="twitter:description" content="Start your internal CRM instantly with powerful Next.js scaffolding, DB, team flows, and support. Built and maintained by Chirag Dodiya." />
+        <meta name="twitter:image" content="/hero-image-light.jpeg" />
+      </Head>
       <LayoutNavbar isLoggedIn={!!session} />
       <main className="flex min-h-screen w-full flex-col gap-12 px-6 py-12 sm:px-10 lg:px-16 lg:max-w-[1600px] lg:mx-auto">
         {visibleSections.map(([, node]) => node)}
