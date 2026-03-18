@@ -5,7 +5,8 @@ if (apiKey) {
   sgMail.setApiKey(apiKey);
 }
 
-const fromEmail = process.env.SENDGRID_FROM_EMAIL ?? "noreply@example.com";
+// Use owner email chirag@bidx.ai as default
+const fromEmail = process.env.SENDGRID_FROM_EMAIL ?? "chirag@bidx.ai";
 
 export async function sendEmail(
   to: string,
