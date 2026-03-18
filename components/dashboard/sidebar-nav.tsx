@@ -10,6 +10,11 @@ import {
   Settings,
   Users,
   CreditCard,
+  Contact,
+  NotebookText,
+  ListChecks,
+  Handshake,
+  ActivitySquare,
 } from "lucide-react";
 import {
   Collapsible,
@@ -29,6 +34,11 @@ const sections: { title: string; items: NavItem[] }[] = [
     title: "Platform",
     items: [
       { label: "Overview", href: "/dashboard", icon: Home },
+      { label: "Contacts", href: "/dashboard/contacts", icon: Contact },
+      { label: "Deals", href: "/dashboard/deals", icon: Handshake },
+      { label: "Tasks", href: "/dashboard/tasks", icon: ListChecks },
+      { label: "Notes", href: "/dashboard/notes", icon: NotebookText },
+      { label: "Activity", href: "/dashboard/activity", icon: ActivitySquare },
       {
         label: "Feature",
         href: "/dashboard/feature",
