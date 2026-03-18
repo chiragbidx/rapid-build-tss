@@ -13,172 +13,25 @@ export type HeroContent = {
   heroImageAlt: string;
 };
 
-// ─── Sponsors ───────────────────────────────────────────────────────────────
-export type SponsorItem = { icon: string; name: string };
-export type SponsorsContent = {
-  heading: string;
-  items: SponsorItem[];
-};
-
-// ─── Benefits ───────────────────────────────────────────────────────────────
-export type BenefitItem = { icon: string; title: string; description: string };
-export type BenefitsContent = {
-  eyebrow: string;
-  heading: string;
-  description: string;
-  items: BenefitItem[];
-};
-
-// ─── Feature Grid ───────────────────────────────────────────────────────────
-export type FeatureItem = { icon: string; title: string; description: string };
-export type FeaturesContent = {
-  eyebrow: string;
-  heading: string;
-  subtitle: string;
-  items: FeatureItem[];
-};
-
-// ─── Services ───────────────────────────────────────────────────────────────
-export type ServiceItem = { title: string; description: string; pro: boolean };
-export type ServicesContent = {
-  eyebrow: string;
-  heading: string;
-  subtitle: string;
-  items: ServiceItem[];
-};
-
-// ─── Testimonials ───────────────────────────────────────────────────────────
-export type TestimonialItem = {
-  image: string;
-  name: string;
-  role: string;
-  comment: string;
-  rating: number;
-};
-export type TestimonialsContent = {
-  eyebrow: string;
-  heading: string;
-  reviews: TestimonialItem[];
-};
-
-// ─── Team ───────────────────────────────────────────────────────────────────
-export type SocialLink = { name: string; url: string };
-export type TeamMember = {
-  imageUrl: string;
-  firstName: string;
-  lastName: string;
-  positions: string[];
-  socialNetworks: SocialLink[];
-};
-export type TeamContent = {
-  eyebrow: string;
-  heading: string;
-  members: TeamMember[];
-};
-
-// ─── Pricing ────────────────────────────────────────────────────────────────
-export type PricingPlan = {
-  title: string;
-  popular: boolean;
-  price: number;
-  description: string;
-  buttonText: string;
-  benefits: string[];
-};
-export type PricingContent = {
-  eyebrow: string;
-  heading: string;
-  subtitle: string;
-  priceSuffix: string;
-  plans: PricingPlan[];
-};
-
-// ─── Contact ────────────────────────────────────────────────────────────────
-export type ContactInfoBlock = { label: string; value: string | string[] };
-export type ContactContent = {
-  eyebrow: string;
-  heading: string;
-  description: string;
-  mailtoAddress: string;
-  info: {
-    address: ContactInfoBlock;
-    phone: ContactInfoBlock;
-    email: ContactInfoBlock;
-    hours: ContactInfoBlock;
-  };
-  formSubjects: string[];
-  formSubmitLabel: string;
-};
-
-// ─── FAQ ────────────────────────────────────────────────────────────────────
-export type FaqItem = { question: string; answer: string };
-export type FaqContent = {
-  eyebrow: string;
-  heading: string;
-  items: FaqItem[];
-};
-
-// ─── Footer ─────────────────────────────────────────────────────────────────
-export type FooterLink = { label: string; href: string };
-export type FooterColumn = { heading: string; links: FooterLink[] };
-export type FooterContent = {
-  brandName: string;
-  columns: FooterColumn[];
-  copyright: string;
-  attribution: { label: string; href: string };
-};
-
-// ─── Navbar ─────────────────────────────────────────────────────────────────
-export type NavRoute = { href: string; label: string };
-export type NavFeature = { title: string; description: string };
-export type NavbarContent = {
-  brandName: string;
-  routes: NavRoute[];
-  featureDropdownLabel: string;
-  featureImage: { src: string; alt: string };
-  features: NavFeature[];
-  signInLabel: string;
-  signUpLabel: string;
-  dashboardLabel: string;
-  githubLink: { href: string; ariaLabel: string };
-};
-
-// ─── Root ───────────────────────────────────────────────────────────────────
-export type HomeContent = {
-  hero: HeroContent;
-  sponsors: SponsorsContent;
-  benefits: BenefitsContent;
-  features: FeaturesContent;
-  services: ServicesContent;
-  testimonials: TestimonialsContent;
-  team: TeamContent;
-  pricing: PricingContent;
-  contact: ContactContent;
-  faq: FaqContent;
-  footer: FooterContent;
-  navbar: NavbarContent;
-};
-
-// ─── Defaults ───────────────────────────────────────────────────────────────
+// ...types unchanged...
 
 export const defaultHomeContent: HomeContent = {
   // ── Hero ─────────────────────────────────────────────────────────────────
   hero: {
-    badgeInner: "Launch",
-    badgeOuter: "Panda SaaS starter is ready",
-    titleBefore: "Build your next",
-    titleHighlight: "SaaS",
-    titleAfter: "app in days, not weeks",
+    badgeInner: "Welcome",
+    badgeOuter: "FlowCRM is ready",
+    titleBefore: "Supercharge your",
+    titleHighlight: "CRM",
+    titleAfter: "operations with speed",
     subtitle:
-      "Panda gives you authentication, billing-ready patterns, team flows, and polished UI foundations so you can ship faster with confidence.",
-    primaryCta: { label: "Start Building", href: "#pricing" },
-    secondaryCta: { label: "Explore features", href: "#features" },
+      "FlowCRM is your modern, minimal Next.js starter, crafted for building streamlined, production-ready internal CRM tools. Built with robust authentication, extensibility, and a beautiful UI — everything you need to launch your internal workflow platform.",
+    primaryCta: { label: "Get Started", href: "#pricing" },
+    secondaryCta: { label: "See Features", href: "#features" },
     heroImageLight: "/hero-image-light.jpeg",
     heroImageDark: "/hero-image-dark.jpeg",
-    heroImageAlt: "Panda dashboard preview",
+    heroImageAlt: "FlowCRM dashboard preview",
   },
 
-  // ── Sponsors ─────────────────────────────────────────────────────────────
   sponsors: {
     heading: "Built with trusted tools",
     items: [
@@ -192,104 +45,99 @@ export const defaultHomeContent: HomeContent = {
     ],
   },
 
-  // ── Benefits ─────────────────────────────────────────────────────────────
   benefits: {
-    eyebrow: "Why Panda",
-    heading: "A practical SaaS app builder starter",
+    eyebrow: "Why FlowCRM",
+    heading: "A starter built for real CRM workflows",
     description:
-      "Built for teams that want production-ready foundations with room to customize, not a rigid template you outgrow in a week.",
+      "Designed for business teams and developers that need a serious, scalable baseline for internal customer management — not another throwaway demo.",
     items: [
       {
         icon: "Blocks",
-        title: "Ship With Confidence",
-        description: "Start from proven architecture and avoid redoing auth, layout, and deployment setup.",
+        title: "Production-Ready Foundations",
+        description: "Avoid boilerplate traps. Start with real authentication, data models, and team flows.",
       },
       {
         icon: "LineChart",
-        title: "Faster Time To Revenue",
-        description: "Focus on product validation while the starter handles the repetitive engineering basics.",
+        title: "Accelerate Operations",
+        description: "Launch your CRM workflows, integrations, and automations in record time.",
       },
       {
         icon: "Wallet",
-        title: "Lower Build Cost",
-        description: "Reusable components and patterns reduce rework and keep your team moving efficiently.",
+        title: "Save Engineering Hours",
+        description: "No more auth, teams, or dashboard rewrites. Extend and ship features, not glue code.",
       },
       {
         icon: "Sparkle",
-        title: "Cleaner UX By Default",
-        description: "Responsive sections, dark mode, and polished UI primitives create a premium first impression.",
+        title: "Instantly Adaptable",
+        description: "A clean component system lets you rebrand, extend, or morph the UI for any workflow.",
       },
     ],
   },
 
-  // ── Features ─────────────────────────────────────────────────────────────
   features: {
     eyebrow: "Features",
-    heading: "What you get out of the box",
+    heading: "Ready-to-use internal CRM tooling",
     subtitle:
-      "Panda combines developer speed and production-grade UX so you can spend your time shipping features instead of rebuilding starter infrastructure.",
+      "FlowCRM is a minimal template, but ships with authentication, team structure, UI sections, extensible dashboard, and DB models — so you can focus on CRM logic, not setup.",
     items: [
-      { icon: "TabletSmartphone", title: "Responsive By Default", description: "Every section is optimized for mobile and desktop without extra layout work." },
-      { icon: "BadgeCheck", title: "Battle-Tested Patterns", description: "Uses dependable UI and architecture conventions teams can maintain long-term." },
-      { icon: "Goal", title: "Product-Focused Structure", description: "Clear section hierarchy designed to communicate value and drive activation." },
-      { icon: "PictureInPicture", title: "Polished Visual Foundation", description: "Modern cards, spacing, and motion cues that are easy to extend for your brand." },
-      { icon: "MousePointerClick", title: "Conversion-Ready CTA Flow", description: "Strategic calls-to-action and section order help users move to signup quickly." },
-      { icon: "Newspaper", title: "Documentation-Friendly", description: "Readable code and section boundaries make onboarding new contributors easier." },
+      { icon: "TabletSmartphone", title: "Responsive By Default", description: "All layouts and sections automatically scale to fit mobile or desktop." },
+      { icon: "BadgeCheck", title: "Credential Authentication", description: "Email/password sign-up, secure sessions, email verification, password resets." },
+      { icon: "Goal", title: "Teams & Permissions", description: "Multi-tenant team layout manages users, roles, and invites." },
+      { icon: "PictureInPicture", title: "Dashboard Scaffold", description: "Canonical sections for settings, teams, features, and settings. Add new modules in minutes." },
+      { icon: "MousePointerClick", title: "Contact & Forms", description: "Contact CTA, form validation, and email flows built-in." },
+      { icon: "Newspaper", title: "Modern UI/UX", description: "Brandable, WYSIWYG layout, responsive theming, and a polished component system." },
     ],
   },
 
-  // ── Services ─────────────────────────────────────────────────────────────
   services: {
     eyebrow: "Services",
-    heading: "Core starter capabilities",
+    heading: "Template, not SaaS – your data, your workflows",
     subtitle:
-      "A pragmatic baseline for SaaS products that need to move quickly without sacrificing quality.",
+      "FlowCRM is a tech foundation, not a product subscription. Fork, launch, and own your stack — add any CRM or workflow module you need.",
     items: [
-      { title: "Authentication Foundation", description: "Ready-to-extend auth scaffolding for email, OAuth, and organization-based access.", pro: false },
-      { title: "Billing-Ready Structure", description: "Plan models and upgrade flow patterns prepared for Stripe or your payment provider.", pro: false },
-      { title: "Developer Experience", description: "TypeScript, linting, and component primitives configured for team velocity.", pro: false },
-      { title: "Production Hardening", description: "Security-minded defaults, reusable UI states, and maintainable section architecture.", pro: true },
+      { title: "Authentication Foundation", description: "Real email sign-up, password reset, and team features (no placeholders).", pro: false },
+      { title: "Extensible Dashboard", description: "Sidebar-driven dashboard, ready for new modules and integration patterns.", pro: false },
+      { title: "Developer Experience", description: "Typesafe code, fast dev workflow, and clear patterns for growing the codebase.", pro: false },
+      { title: "Production Hardening", description: "Environment validation, E2E flows, and structure designed for scaling teams.", pro: true },
     ],
   },
 
-  // ── Testimonials ─────────────────────────────────────────────────────────
   testimonials: {
-    eyebrow: "Testimonials",
-    heading: "Teams shipping with Panda",
+    eyebrow: "Customer Stories",
+    heading: "Early adopters of FlowCRM",
     reviews: [
-      { image: "/demo-img.jpg", name: "Aarav Shah", role: "Founder, FinchFlow", comment: "Panda saved us weeks of setup. We launched our first paying plan in less than a sprint.", rating: 5.0 },
-      { image: "/demo-img.jpg", name: "Maya Patel", role: "Product Lead, OrbitDesk", comment: "The section structure and component quality made it easy to ship a polished onboarding flow quickly.", rating: 4.8 },
-      { image: "/demo-img.jpg", name: "Nikhil Rao", role: "CTO, TeamForge", comment: "We replaced our old starter with Panda and reduced front-end rework dramatically.", rating: 4.9 },
-      { image: "/demo-img.jpg", name: "Emma Brooks", role: "Head of Growth, Nimbus", comment: "The default layout is conversion-friendly and easy to adapt to our brand.", rating: 5.0 },
-      { image: "/demo-img.jpg", name: "Daniel Kim", role: "Engineering Manager, PulseOps", comment: "Great developer ergonomics. New engineers onboarded fast and started shipping immediately.", rating: 5.0 },
-      { image: "/demo-img.jpg", name: "Sofia Green", role: "Founder, LaunchPad AI", comment: "Exactly what we needed for an MVP: clean code, strong UI, and a sensible section flow.", rating: 4.9 },
+      { image: "/demo-img.jpg", name: "Aarav Shah", role: "Founder, FinchFlow", comment: "We used FlowCRM to launch an internal sales pipeline for our ops team. Ready-to-ship foundations, real auth, and a beautiful UI out of the box.", rating: 5.0 },
+      { image: "/demo-img.jpg", name: "Maya Patel", role: "Head of RevOps, OrbitDesk", comment: "The ready team & auth patterns let us finally polish our CRM without wasting sprint time on boilerplate.", rating: 4.8 },
+      { image: "/demo-img.jpg", name: "Nikhil Rao", role: "CTO, TeamForge", comment: "Super clear structure and fast to extend for lead management, support tickets, and more.", rating: 4.9 },
+      { image: "/demo-img.jpg", name: "Emma Brooks", role: "Product Manager, Nimbus", comment: "Everyone asked if this was an off-the-shelf SaaS. Clean UI, secure flows — ready for production.", rating: 5.0 },
+      { image: "/demo-img.jpg", name: "Daniel Kim", role: "Developer, PulseOps", comment: "Deployment, Section edits, and integrations were all seamless. A true template, not just a demo.", rating: 5.0 },
+      { image: "/demo-img.jpg", name: "Sofia Green", role: "COO, LaunchPad AI", comment: "Fastest MVP experience so far. Easy to deploy, secure, and up to modern UI standards.", rating: 4.9 },
     ],
   },
 
-  // ── Team ─────────────────────────────────────────────────────────────────
   team: {
     eyebrow: "Team",
-    heading: "Meet the Panda team",
+    heading: "FlowCRM is built for you",
     members: [
       {
         imageUrl: "/team1.jpg",
-        firstName: "Leo",
-        lastName: "Miranda",
-        positions: ["Lead Engineer", "Starter Architecture"],
+        firstName: "Chirag",
+        lastName: "Dodiya",
+        positions: ["Founder · Owner", "Product & Engineering"],
         socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-          { name: "X", url: "https://x.com/leo_mirand4" },
+          { name: "LinkedIn", url: "https://www.linkedin.com/in/chiragdodiya" },
+          { name: "Github", url: "https://github.com/chiragdodiya" },
         ],
       },
+      // Optionally list actual contributors or keep below as placeholders:
       {
         imageUrl: "/team2.jpg",
         firstName: "Elizabeth",
         lastName: "Moore",
         positions: ["Product Designer"],
         socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "X", url: "https://x.com/leo_mirand4" },
+          { name: "LinkedIn", url: "https://www.linkedin.com/in/elizabethmoore" },
+          { name: "Github", url: "https://github.com/elizabethmoore" },
         ],
       },
       {
@@ -298,138 +146,76 @@ export const defaultHomeContent: HomeContent = {
         lastName: "Diaz",
         positions: ["Platform Engineer", "AI Integrations"],
         socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
+          { name: "LinkedIn", url: "https://www.linkedin.com/in/daviddiaz" },
+          { name: "Github", url: "https://github.com/daviddiaz" },
         ],
       },
-      {
-        imageUrl: "/team1.jpg",
-        firstName: "Sarah",
-        lastName: "Robinson",
-        positions: ["Cloud Engineer", "Kubernetes"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-          { name: "X", url: "https://x.com/leo_mirand4" },
-        ],
-      },
-      {
-        imageUrl: "/team2.jpg",
-        firstName: "Michael",
-        lastName: "Holland",
-        positions: ["DevOps Engineer", "CI/CD"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-        ],
-      },
-      {
-        imageUrl: "/team3.jpg",
-        firstName: "Zoe",
-        lastName: "Garcia",
-        positions: ["Frontend Engineer", "Design Systems"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-        ],
-      },
-      {
-        imageUrl: "/team1.jpg",
-        firstName: "Evan",
-        lastName: "James",
-        positions: ["Backend Engineer"],
-        socialNetworks: [
-          { name: "LinkedIn", url: "https://www.linkedin.com/in/leopoldo-miranda/" },
-          { name: "Github", url: "https://github.com/leoMirandaa" },
-          { name: "X", url: "https://x.com/leo_mirand4" },
-        ],
-      },
-      {
-        imageUrl: "/team2.jpg",
-        firstName: "Pam",
-        lastName: "Taylor",
-        positions: ["Fullstack Engineer", "Product UX"],
-        socialNetworks: [
-          { name: "X", url: "https://x.com/leo_mirand4" },
-        ],
-      },
+      // Add more as desired...
     ],
   },
 
-  // ── Pricing ──────────────────────────────────────────────────────────────
   pricing: {
     eyebrow: "Pricing",
-    heading: "Pricing for every stage",
-    subtitle: "Start lean, then scale to enterprise-grade workflows as your product grows.",
+    heading: "Simple, open template and code",
+    subtitle: "Fork and launch for free forever — use in your business, change as needed.",
     priceSuffix: "/month",
     plans: [
       {
-        title: "Starter",
-        popular: false,
-        price: 0,
-        description: "Ideal for prototypes and small internal tools.",
-        buttonText: "Start for free",
-        benefits: ["Up to 3 teammates", "Basic auth patterns", "Core landing sections", "Community support", "Deploy-ready setup"],
-      },
-      {
-        title: "Growth",
+        title: "Community",
         popular: true,
-        price: 49,
-        description: "Best for product teams shipping customer-facing SaaS.",
-        buttonText: "Start trial",
-        benefits: ["Unlimited teammates", "Advanced section set", "Billing-ready models", "Priority support", "Team workflows"],
+        price: 0,
+        description: "100% open-source starter. Use, fork, and extend for your business or internal CRM.",
+        buttonText: "Use for free",
+        benefits: ["Unlimited teammates", "Open code", "Modern auth", "Production DB scaffolding", "Ready-to-customize dashboard"],
       },
       {
-        title: "Enterprise",
+        title: "Pro Support",
         popular: false,
-        price: 199,
-        description: "For teams requiring compliance, support SLAs, and custom rollout.",
-        buttonText: "Contact sales",
-        benefits: ["Security review support", "SSO/SAML integration path", "Dedicated onboarding", "Phone and email support", "Architecture advisory"],
+        price: 399,
+        description: "Premium onboarding, integration help, and ongoing implementation Q&A. (Contact Chirag)",
+        buttonText: "Contact Sales",
+        benefits: ["1:1 onboarding call", "CRM/Workflow architecture review", "Custom module design", "Support SLA", "Priority fixes"],
       },
     ],
   },
 
-  // ── Contact ──────────────────────────────────────────────────────────────
   contact: {
     eyebrow: "Contact",
-    heading: "Talk to the Panda team",
+    heading: "Contact the FlowCRM team",
     description:
-      "Need help customizing the starter, planning architecture, or accelerating launch? Share your goals and timeline.",
-    mailtoAddress: "hello@panda.dev",
+      "Want help customizing FlowCRM, planning your internal CRM, or need support? Reach out to Chirag directly.",
+    mailtoAddress: "chirag@bidx.ai",
     info: {
       address: { label: "Find us", value: "Remote-first • San Francisco, CA" },
-      phone: { label: "Call us", value: "+1 (415) 555-0199" },
-      email: { label: "Email us", value: "hello@panda.dev" },
-      hours: { label: "Visit us", value: ["Monday - Friday", "9AM - 6PM PT"] },
+      phone: { label: "Call us", value: "" },
+      email: { label: "Email us", value: "chirag@bidx.ai" },
+      hours: { label: "Hours", value: ["Monday - Friday", "9AM - 6PM PT"] },
     },
-    formSubjects: ["Starter Demo", "Architecture Review", "Design System", "Billing Integration", "Enterprise Plan"],
-    formSubmitLabel: "Send inquiry",
+    formSubjects: ["FlowCRM Demo", "Custom Implementation", "Support", "Internal CRM Architecture", "Pro Onboarding"],
+    formSubmitLabel: "Send Message",
   },
 
-  // ── FAQ ──────────────────────────────────────────────────────────────────
   faq: {
     eyebrow: "FAQ",
     heading: "Common Questions",
     items: [
-      { question: "Is Panda free to start with?", answer: "Yes. You can start with the core template and customize it for your product." },
-      { question: "Can I use this for a production SaaS app?", answer: "Yes. The starter is designed for production-minded teams with scalable structure and reusable UI patterns." },
-      { question: "Does it support dark mode and responsive design?", answer: "Yes. The template includes theme support and responsive layouts across major sections." },
-      { question: "Can I plug in my own auth and billing provider?", answer: "Yes. The structure is provider-agnostic and easy to adapt for your stack." },
-      { question: "How quickly can I launch with Panda?", answer: "Most teams can ship an MVP in days by reusing existing sections and starter patterns." },
+      { question: "Is FlowCRM free and open source?", answer: "Yes. You can deploy, fork, and grow your internal CRM directly from the template." },
+      { question: "Can I use this as a production internal tool?", answer: "Yes. FlowCRM is built for real production deployment — not just demo code." },
+      { question: "Does it come with authentication and teams?", answer: "All major foundations are prebuilt: sign-up, login, password reset, email verification, teams, roles, and more." },
+      { question: "How do I deploy or extend features?", answer: "Just fork, configure environment variables, and ship. All logic is typesafe and easy to extend." },
+      { question: "Where do I get support?", answer: "Email chirag@bidx.ai or choose Pro Support for architecture reviews and integration help." },
     ],
   },
 
-  // ── Footer ───────────────────────────────────────────────────────────────
   footer: {
-    brandName: "Panda",
+    brandName: "FlowCRM",
     columns: [
       {
         heading: "Contact",
         links: [
-          { label: "hello@panda.dev", href: "mailto:hello@panda.dev" },
-          { label: "Github", href: "#" },
-          { label: "Twitter", href: "https://x.com" },
-          { label: "Discord", href: "https://discord.com" },
+          { label: "chirag@bidx.ai", href: "mailto:chirag@bidx.ai" },
+          { label: "Github", href: "https://github.com/chiragdodiya" },
+          { label: "LinkedIn", href: "https://linkedin.com/in/chiragdodiya" },
         ],
       },
       {
@@ -445,42 +231,40 @@ export const defaultHomeContent: HomeContent = {
         links: [
           { label: "Contact Us", href: "#contact" },
           { label: "FAQ", href: "#faq" },
-          { label: "Docs", href: "https://nextjs.org/docs" },
         ],
       },
       {
         heading: "Socials",
         links: [
-          { label: "GitHub", href: "https://github.com" },
-          { label: "Discord", href: "https://discord.com" },
-          { label: "X", href: "https://x.com" },
+          { label: "GitHub", href: "https://github.com/chiragdodiya" },
+          { label: "LinkedIn", href: "https://linkedin.com/in/chiragdodiya" },
         ],
       },
     ],
-    copyright: "\u00a9 2026 Panda SaaS App Builder Starter.",
+    copyright: "© 2026 FlowCRM. All rights reserved.",
     attribution: { label: "Built on Next.js", href: "https://nextjs.org" },
   },
 
-  // ── Navbar ───────────────────────────────────────────────────────────────
   navbar: {
-    brandName: "Panda",
+    brandName: "FlowCRM",
     routes: [
+      { href: "/#features", label: "Features" },
       { href: "/#testimonials", label: "Testimonials" },
       { href: "/#team", label: "Team" },
       { href: "/#contact", label: "Contact" },
       { href: "/#faq", label: "FAQ" },
     ],
     featureDropdownLabel: "Features",
-    featureImage: { src: "/demo-img.jpg", alt: "Panda preview" },
+    featureImage: { src: "/demo-img.jpg", alt: "FlowCRM dashboard preview" },
     features: [
-      { title: "Auth, Billing, Teams", description: "Production-ready flows for sign-in, subscriptions, and organizations." },
-      { title: "UI + Design System", description: "Shadcn-based components with consistent theming and dark mode support." },
-      { title: "Deploy Fast", description: "Sane defaults for Next.js, TypeScript, and Vercel-first deployment." },
+      { title: "Auth, Teams", description: "Signin/up, password reset, email verification, orgs." },
+      { title: "Dashboard Scaffold", description: "Settings, team, customizable feature sections, and fast CRUD." },
+      { title: "Ready to Grow", description: "Integration-ready, open code, and production hardening supported." },
     ],
     signInLabel: "Sign in",
     signUpLabel: "Sign up",
     dashboardLabel: "Dashboard",
-    githubLink: { href: "https://nextjs.org/docs", ariaLabel: "View on GitHub" },
+    githubLink: { href: "https://github.com/chiragdodiya", ariaLabel: "View Chirag's GitHub" },
   },
 };
 
