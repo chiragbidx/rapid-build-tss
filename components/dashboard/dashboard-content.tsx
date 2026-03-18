@@ -1,5 +1,5 @@
 "use client";
-
+// -- keeping component structure intact, only copy/label/branding updated, removed 'mock/demo' language and rewritten as part of FlowCRM base --
 import { FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
 import {
@@ -68,31 +68,31 @@ type MockProject = {
 };
 
 const metrics: Metric[] = [
-  { label: "Total Users", value: "2,847", trend: "+12.4%", icon: Users, description: "vs last month" },
-  { label: "Active Projects", value: "184", trend: "+6.1%", icon: FolderKanban, description: "vs last month" },
-  { label: "Revenue", value: "$48,290", trend: "+18.2%", icon: DollarSign, description: "vs last month" },
-  { label: "Growth Rate", value: "24.5%", trend: "+3.1%", icon: TrendingUp, description: "vs last month" },
+  { label: "Total Contacts", value: "2,847", trend: "+3.4%", icon: Users, description: "this quarter" },
+  { label: "Active Deals", value: "184", trend: "+2.1%", icon: FolderKanban, description: "in pipeline" },
+  { label: "Closed Revenue", value: "$48,290", trend: "+8.2%", icon: DollarSign, description: "this year" },
+  { label: "Open Tasks", value: "24", trend: "–11%", icon: TrendingUp, description: "pending action" },
 ];
 
 const onboardingSteps: OnboardingStep[] = [
-  { title: "Complete your profile", description: "Add your name and contact details.", href: "/dashboard/settings", done: false },
-  { title: "Invite team members", description: "Collaborate by sending invitations.", href: "/dashboard/team", done: false },
-  { title: "Connect an integration", description: "Link external tools and services.", href: "#", done: false },
-  { title: "Set up billing", description: "Add a payment method for premium.", href: "#", done: false },
+  { title: "Update company profile", description: "Add core info and contact channels.", href: "/dashboard/settings", done: false },
+  { title: "Add your first contact", description: "Start tracking relationships.", href: "#", done: false },
+  { title: "Invite team members", description: "Give access to your team.", href: "/dashboard/team", done: false },
+  { title: "Explore feature modules", description: "Extend and customize FlowCRM.", href: "/dashboard/feature", done: false },
 ];
 
 const recentActivity: ActivityItem[] = [
-  { title: "New user signup", detail: "sarah@acme.dev created an account", time: "2 min ago", icon: Users },
-  { title: "Plan upgraded", detail: "starter@pulsehq.com moved to Pro", time: "28 min ago", icon: Zap },
-  { title: "Invoice paid", detail: "INV-2487 was paid — $299.00", time: "1 hr ago", icon: DollarSign },
-  { title: "Team invited", detail: "3 users invited to workspace", time: "3 hr ago", icon: Users },
-  { title: "Project created", detail: "New project 'Q2 Campaign'", time: "5 hr ago", icon: FolderKanban },
+  { title: "Contact added", detail: "Anya signed up as a lead", time: "5 min ago", icon: Users },
+  { title: "Pipeline won", detail: "BigCorp deal closed ($15,000)", time: "58 min ago", icon: Zap },
+  { title: "Task completed", detail: "Follow up with Sarah", time: "1 hr ago", icon: DollarSign },
+  { title: "Teammate joined", detail: "alex@acmecorp.io joined Workspace", time: "3 hr ago", icon: Users },
+  { title: "Module customized", detail: "Support CRM field mapping", time: "5 hr ago", icon: FolderKanban },
 ];
 
 const quickActions = [
-  { label: "Invite a member", href: "/dashboard/team", icon: Users },
-  { label: "Account settings", href: "/dashboard/settings", icon: Activity },
-  { label: "View activity", href: "#", icon: Bell },
+  { label: "Invite Member", href: "/dashboard/team", icon: Users },
+  { label: "Settings", href: "/dashboard/settings", icon: Activity },
+  { label: "Customize Feature", href: "/dashboard/feature", icon: Bell },
 ];
 
 const weeklyData = [
@@ -121,9 +121,9 @@ const monthlyRevenue = [
 ];
 
 const initialMockProjects: MockProject[] = [
-  { id: "p-1", name: "Landing Refresh", owner: "Ava", status: "Draft" },
-  { id: "p-2", name: "Onboarding Flow", owner: "Liam", status: "In Review" },
-  { id: "p-3", name: "Usage Dashboard", owner: "Noah", status: "Published" },
+  { id: "p-1", name: "Contact Import", owner: "Ava", status: "Draft" },
+  { id: "p-2", name: "Account Renewal", owner: "Liam", status: "In Progress" },
+  { id: "p-3", name: "Internal Knowledgebase", owner: "Noah", status: "Active" },
 ];
 
 function BarChart({ data }: { data: typeof weeklyData }) {
@@ -227,7 +227,7 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
   const showCharts = !query || matchesQuery(query, "performance", "chart", "graph", "revenue", "engagement", "weekly", "monthly");
   const showActivity = filteredActivity.length > 0;
   const showCrudExample =
-    !query || matchesQuery(query, "crud", "dialog", "modal", "project", "create", "edit");
+    !query || matchesQuery(query, "module", "dialog", "item", "crm", "create", "edit");
   const noResults = !showMetrics && !showOnboarding && !showCharts && !showActivity && !showCrudExample;
 
   function openCreateDialog() {
@@ -274,7 +274,7 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
               {greeting}, {firstName}
             </h1>
             <p className="mt-1 text-sm text-muted-foreground">
-              Here&apos;s what&apos;s happening across your workspace today.
+              Welcome to FlowCRM — your workspace for managing deals, contacts, and team collaboration.
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -302,7 +302,7 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             type="search"
-            placeholder="Search dashboard..."
+            placeholder="Search FlowCRM…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="pl-9 h-10 bg-muted/50 border-muted-foreground/15 focus-visible:border-border focus-visible:bg-background"
@@ -365,7 +365,7 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
                     0 / {onboardingSteps.length}
                   </Badge>
                 </div>
-                <CardDescription>Complete these steps to set up your workspace.</CardDescription>
+                <CardDescription>Kick off your FlowCRM workspace</CardDescription>
               </CardHeader>
               <CardContent className="space-y-1">
                 {filteredSteps.map((step) => (
@@ -395,8 +395,8 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="text-base">Weekly Signups</CardTitle>
-                    <CardDescription>New user registrations this week</CardDescription>
+                    <CardTitle className="text-base">Weekly Contacts</CardTitle>
+                    <CardDescription>New contacts added this week</CardDescription>
                   </div>
                   <Badge variant="outline" className="text-xs font-medium">
                     316 total
@@ -419,11 +419,11 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle className="text-base">Revenue Overview</CardTitle>
-                  <CardDescription>Monthly revenue for the current year</CardDescription>
+                  <CardDescription>Monthly revenue closed</CardDescription>
                 </div>
                 <div className="text-right">
                   <p className="text-lg font-bold tracking-tight">$48,290</p>
-                  <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">+18.2% from last month</p>
+                  <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">+8.2% from last year</p>
                 </div>
               </div>
             </CardHeader>
@@ -440,13 +440,13 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
             <CardHeader>
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <CardTitle className="text-base">Projects</CardTitle>
+                  <CardTitle className="text-base">Modules</CardTitle>
                   <CardDescription>
-                    Create and update your projects
+                    Easily manage and extend FlowCRM modules — duplicate this pattern for new features, pipelines, contacts, and more.
                   </CardDescription>
                 </div>
                 <Button size="sm" onClick={openCreateDialog}>
-                  Create project
+                  Create module
                 </Button>
               </div>
             </CardHeader>
@@ -480,21 +480,21 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>
-                  {editingProject ? "Edit project" : "Create project"}
+                  {editingProject ? "Edit module" : "Create module"}
                 </DialogTitle>
                 <DialogDescription>
-                  This is mock data in local component state. No backend call is made.
+                  This example is using local state only — in production, connect modules to your preferred backend pattern.
                 </DialogDescription>
               </DialogHeader>
 
               <form onSubmit={handleSaveProject} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="project-name">Project name</Label>
+                  <Label htmlFor="project-name">Module name</Label>
                   <Input
                     id="project-name"
                     name="name"
                     defaultValue={editingProject?.name ?? ""}
-                    placeholder="Q2 Campaign"
+                    placeholder="Contact Import"
                     required
                   />
                 </div>
@@ -540,7 +540,7 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle className="text-base">Recent Activity</CardTitle>
-                <CardDescription>Latest events across your workspace</CardDescription>
+                <CardDescription>Latest activity in FlowCRM</CardDescription>
               </div>
               <Button variant="ghost" size="sm" className="gap-1.5 text-xs" disabled>
                 View all
